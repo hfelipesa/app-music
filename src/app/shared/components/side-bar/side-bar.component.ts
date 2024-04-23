@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -7,68 +8,80 @@ import { Component } from '@angular/core';
 })
 export class SideBarComponent {
   mainMenu: {
-    defaulOptions: Array<any>,
-    accessLink: Array<any>,  
-  } =
-    {
-      defaulOptions: [],
-      accessLink: [],
-      
-    }
+    defaultOptions: Array<any>, accessLink: Array<any>
+  } = { defaultOptions: [], accessLink: [] }
 
-  costumOptions: Array<any> = []
+  customOptions: Array<any> = []
 
-  constructor(){}
+  constructor(private router:Router) { }
 
-  ngOnInit() {
-    this.mainMenu.defaulOptions = [
+  ngOnInit(): void {
+    this.mainMenu.defaultOptions = [
       {
         name: 'Home',
         icon: 'uil uil-estate',
-       /*  router:'/' */
+        router: ['/', 'auth']
       },
       {
         name: 'Buscar',
         icon: 'uil uil-search',
-        /* router:'/' */
+        router: ['/', 'history']
       },
       {
         name: 'Tu biblioteca',
         icon: 'uil uil-chart',
-        /* router:'/' */
-      },
-
-    ]
-    this.mainMenu.accessLink =[
-      {
-        name:'Crear lista',
-        icon:'uil-plus-square'
-      },
-      {
-        name:'Canciones que te gustan',
-        icon:'uil-heart-medical'
+        router: ['/', 'favorites'],
+        query: { hola: 'mundo' }
       }
     ]
 
-    this.costumOptions=[
+    this.mainMenu.accessLink = [
       {
-        name:'Mi lista #1',
-        /* router:'/' */
+        name: 'Crear lista',
+        icon: 'uil-plus-square'
       },
       {
-        name:'Mi lista #2',
-        /* router:'/' */
+        name: 'Canciones que te gustan',
+        icon: 'uil-heart-medical'
+      }
+    ]
+
+    this.customOptions = [
+      {
+        name: 'Mi lista º1',
+        router: ['/']
       },
       {
-        name:'Mi lista #3',
-       /*  router:'/' */
-  
+        name: 'Mi lista º2',
+        router: ['/']
       },
-    ]    
-   }
+      {
+        name: 'Mi lista º3',
+        router: ['/']
+      },
+      {
+        name: 'Mi lista º4',
+        router: ['/']
+      }
+    ]
+
+  }
+
+  goTo($event:any){
+    /* console.log($event) */
+   /* Navegacion sidebar pasando array*/
+    this.router.navigate(['/','auth'])
+    this.router.navigate(['/', 'history'])
+    this.router.navigate(['/', 'favorites'])
+    this.router.navigate( ['/', 'favorites'])
+    this.router.navigate(['/','auth'])
+    this.router.navigate(['/','auth'])
+    this.router.navigate(['/','auth'])
+    this.router.navigate(['/','auth'])
+  }
+
 
 }
-
 
 //Explicacion
 /*  linksMenu:Array<any>=[
