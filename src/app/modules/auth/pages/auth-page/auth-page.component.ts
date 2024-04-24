@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, MaxValidator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-auth-page',
@@ -7,5 +8,24 @@ import { Component } from '@angular/core';
 })
 export class AuthPageComponent {
 
+ formLogin: FormGroup = new FormGroup({});
+
+ constructor(){}
+ ngOnInit(){
+  this.formLogin = new FormGroup({
+    //Clave valor
+    email: new FormControl('felipe@test.com',[
+      //Validaciones del Input
+      Validators.required,
+      Validators.email,
+    ]),
+    password: new FormControl('admin123',[
+      Validators.required,
+      Validators.minLength(8),
+      Validators.maxLength(12),
+
+    ])
+  })
+ }
 
 }

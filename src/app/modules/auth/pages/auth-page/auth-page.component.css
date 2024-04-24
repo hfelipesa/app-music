@@ -2,7 +2,8 @@
     position: absolute;
     width: 100vw;
     height: 100vh;
-    background-color: var(--color-4);
+    /* background-color: var(--color-4); */
+    background-color: rgba(156, 155, 155, 0.852);
     color: var(--color-3);
     display: flex;
     justify-content: center;
