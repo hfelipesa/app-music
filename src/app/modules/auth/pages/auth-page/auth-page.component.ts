@@ -14,12 +14,12 @@ export class AuthPageComponent {
  ngOnInit(){
   this.formLogin = new FormGroup({
     //Clave valor
-    email: new FormControl('felipe@test.com',[
+    email: new FormControl('',[
       //Validaciones del Input
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('admin123',[
+    password: new FormControl('',[
       Validators.required,
       Validators.minLength(8),
       Validators.maxLength(12),
