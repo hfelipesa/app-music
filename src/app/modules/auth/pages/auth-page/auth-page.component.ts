@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, MaxValidator, Validators } from '@angular/forms';
+import { AuthService } from '@modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-auth-page',
@@ -10,7 +11,7 @@ export class AuthPageComponent {
 
  formLogin: FormGroup = new FormGroup({});
 
- constructor(){}
+ constructor(private authService:AuthService){}
  ngOnInit(){
   this.formLogin = new FormGroup({
     //Clave valor
@@ -22,10 +23,22 @@ export class AuthPageComponent {
     password: new FormControl('',[
       Validators.required,
       Validators.minLength(8),
-      Validators.maxLength(12),
+      Validators.maxLength(20),
+      
 
     ])
   })
+ }
+
+ sendLogin():void{
+  const {email,password}=this.formLogin.value
+  this.authService.sendCredentials(email,password)
+
+  if(email === 'felipe@test.com' && password === 'test123'){
+    console.log('El usuario existe');
+  }else{
+    console.log('El usuario no existe');
+  }
  }
 
 }
