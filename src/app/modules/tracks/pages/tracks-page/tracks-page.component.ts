@@ -17,21 +17,21 @@ export class TracksPageComponent implements OnDestroy {
   constructor(private tracksService:TrackService){}
 
   ngOnInit():void{
-    const observer$1 = this.tracksService.dataTracksTrending$
-    .subscribe(response => {
+    this.tracksService.getAllTracks()
+    .subscribe((response:TrackModel[]) => {
+      /* console.log(response) */
       this.TracksTrending = response
-      console.log('Tracks', response)
     })
 
-    const observer$2 = this.tracksService.dataTracksRandom$
-    .subscribe(response => {
+    this.tracksService.getAllRandom()
+    .subscribe((response:TrackModel[])=>{
       this.TracksRandom = response
-      console.log('Tracks', response)
+      console.log(response)
     })
-    this.listObserver$ = [observer$1,observer$2]
+
   }
 
   ngOnDestroy(): void {
-    this.listObserver$.forEach( u => u.unsubscribe())    
+     
   }
 }
