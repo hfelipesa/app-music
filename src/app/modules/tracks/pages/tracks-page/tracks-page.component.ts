@@ -1,19 +1,37 @@
-import { Component } from '@angular/core';
-import * as dataRaw from '../../../../data/tracks.json';
+import { Component, OnDestroy } from '@angular/core';
 import { TrackModel } from '@core/models/tracks.model';
+import { TrackService } from '@modules/tracks/services/track.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-tracks-page',
-  templateUrl: './tracks-page.component.html',
+  templateUrl:'./tracks-page.component.html',
   styleUrl: './tracks-page.component.css'
 })
-export class TracksPageComponent {
-  mockTracksList: Array<TrackModel>=[]
+export class TracksPageComponent implements OnDestroy {
+  TracksTrending: Array<TrackModel>=[]
+  TracksRandom: Array<TrackModel>=[]
 
-  constructor(){}
+  listObserver$:Array<Subscription>=[]
 
-  ngOnInit(){
-    const {data}: any =(dataRaw as any).default
-    this.mockTracksList = data;
+  constructor(private tracksService:TrackService){}
+
+  ngOnInit():void{
+    this.tracksService.getAllTracks()
+    .subscribe((response:TrackModel[]) => {
+      /* console.log(response) */
+      this.TracksTrending = response
+    })
+
+    this.tracksService.getAllRandom()
+    .subscribe((response:TrackModel[])=>{
+      this.TracksRandom = response
+      console.log(response)
+    })
+
+  }
+
+  ngOnDestroy(): void {
+     
   }
 }

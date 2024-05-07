@@ -20,5 +20,4 @@ export class CardPlayerComponent {
     this.multimediaService.callback.emit(track)
   }
 
-
-
+}
