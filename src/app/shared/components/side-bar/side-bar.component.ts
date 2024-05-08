@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,Navigation } from '@angular/router';
 
 @Component({
   selector: 'app-side-bar',
@@ -20,29 +20,31 @@ export class SideBarComponent {
       {
         name: 'Home',
         icon: 'uil uil-estate',
-        router: ['/', 'auth']
+        router: ['/']
       },
       {
         name: 'Buscar',
-        icon: 'uil uil-search',
+        icon: 'uil-search',
         router: ['/', 'history']
       },
       {
         name: 'Tu biblioteca',
         icon: 'uil uil-chart',
-        router: ['/', 'favorites'],
-        query: { hola: 'mundo' }
+        router: ['/', 'tracks'],
+       /*  query: { hola: 'mundo' } */
       }
     ]
 
     this.mainMenu.accessLink = [
       {
         name: 'Crear lista',
-        icon: 'uil-plus-square'
+        icon: 'uil-plus-square',
+        router:[]
       },
       {
         name: 'Canciones que te gustan',
-        icon: 'uil-heart-medical'
+        icon: 'uil-heart-medical',
+        router:[]
       }
     ]
 
@@ -67,18 +69,12 @@ export class SideBarComponent {
 
   }
 
-  goTo($event:any){
-    /* console.log($event) */
-   /* Navegacion sidebar pasando array*/
-    this.router.navigate(['/','auth'])
-    this.router.navigate(['/', 'history'])
+ /*  goTo($event:any){
+    console.log($event)
+    this.router.navigate(['/'])
+    this.router.navigate(['/','history'])
     this.router.navigate(['/', 'favorites'])
-    this.router.navigate( ['/', 'favorites'])
-    this.router.navigate(['/','auth'])
-    this.router.navigate(['/','auth'])
-    this.router.navigate(['/','auth'])
-    this.router.navigate(['/','auth'])
-  }
+  } */
 
 
 }

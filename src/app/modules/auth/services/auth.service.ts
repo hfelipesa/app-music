@@ -12,13 +12,13 @@ export class AuthService {
   private URL= environment.apiUrl;
   constructor(private httpClient: HttpClient) { }
 
-  public sendCredentials(email:string, passqord:string):Observable<any>{
+  public sendCredentials(email:string, password:string):Observable<any>{
      
     const body={
       email,
-      passqord
+      password
     }
-    return this.httpClient.post(`${this.URL}/auth/auth`,body)
+    return this.httpClient.post(`${this.URL}/auth`,body)
   }
 }
 
